@@ -12,10 +12,34 @@ public class SortColors {
 
         int[] nums3 = {0};
         sortColors(nums3);
-        System.out.println(Arrays.toString(nums3)); // [0]
+        System.out.println(Arrays.toString(nums3)); // [0]*/
     }
+    public static int[] sortColors(int[] nums) {
+        int oneP = 0;
+        int left = 0;
+        int right = nums.length - 1;
 
-    public static void sortColors(int[] nums) {
+        while (oneP <= right) {
+            if (nums[oneP] == 2) {
+                int temp = nums[oneP];
+                nums[oneP] = nums[right];
+                nums[right] = temp;
+                right--;
+            } else if (nums[oneP] == 0) {
+                int temp = nums[oneP];
+                nums[oneP] = nums[left];
+                nums[left] = temp;
+                left++;
+                oneP++;
+            } else if (nums[oneP] == 1){
+                oneP++;
+            }
+    }
+        return nums;
+    }
+    /*public static void sortColors(int[] nums) {
+
+
         //let swap zero first
         int left = 0;
         int right = nums.length-1;
@@ -43,5 +67,5 @@ public class SortColors {
                 i++;
             }
         }
-    }
+    }*/
 }

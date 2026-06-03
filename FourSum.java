@@ -1,12 +1,8 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class FourSum {
         public static void main(String[] args) {
-
+/*
         // Test 1: Expected: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
         int[] nums1 = {1, 0, -1, 0, -2, 2};
         System.out.println("Test 1: " + fourSum(nums1, 0));
@@ -26,9 +22,41 @@ public class FourSum {
         // Test 5: overflow check with large values — Expected: [[1000000000,1000000000,1000000000,1000000000]]
         int[] nums5 = {1000000000, 1000000000, 1000000000, 1000000000};
         System.out.println("Test 5: " + fourSum(nums5, 2147483647));
+*/
+        int[] nums6 = {1000000000,1000000000,1000000000,1000000000};
+        System.out.println("Test 5: " + fourSum(nums6, -294967296));
     }
     public static List<List<Integer>> fourSum(int[] nums, int target) {
-       	Arrays.sort(nums);
+        Arrays.sort(nums);
+        Set<List<Integer>> result = new HashSet<>();
+
+        int left =0;
+        int right = nums.length-1;
+        long sum = -1;
+        long longTarget = (long)target;
+
+        for(int i=0;i< nums.length-3;i++){
+            for(int j = i+1;j< nums.length-2;j++){
+                left = j+1;
+                right = nums.length-1;
+                while (left<right){
+                    sum = nums[i]+nums[j]+nums[left]+nums[right];
+                    if(sum>longTarget){
+                        right--;
+                    }
+                    else if(sum<longTarget){
+                        left++;
+                    }
+                    else if(sum == longTarget){
+                        result.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
+                        left++;
+                        right--;
+                    }
+                }
+            }
+        }
+
+       /*	Arrays.sort(nums);
 		Set<List<Integer>> result = new HashSet<>();
 
 		int i = 0;
@@ -61,7 +89,7 @@ public class FourSum {
             }
             
 		}
-
+*/
 		return new ArrayList<>(result);
     }
 }

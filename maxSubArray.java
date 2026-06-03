@@ -20,7 +20,7 @@ public class maxSubArray {
             tempSum += nums[i];
             maxSum = Math.max(tempSum,maxSum);
 
-            if(tempSum<0){
+           if(tempSum<0){
                 tempSum = 0;
             }
         }
