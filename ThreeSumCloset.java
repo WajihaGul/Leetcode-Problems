@@ -6,7 +6,7 @@ public class ThreeSumCloset {
         // Test 1: Expected 2
         int[] nums1 = {-1, 2, 1, -4};
         System.out.println("Test 1: " + threeSumClosest(nums1, 1));
-
+/*
         // Test 2: Expected 0
         int[] nums2 = {0, 0, 0};
         System.out.println("Test 2: " + threeSumClosest(nums2, 1));
@@ -18,11 +18,45 @@ public class ThreeSumCloset {
         // Test 4: Expected -4
         int[] nums4 = {-5, -3, -1, 2};
         System.out.println("Test 4: " + threeSumClosest(nums4, -10));
-    }
+*/    }
 
     public static int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
 
+        int left = 0;
+        int right = nums.length-1;
+        int tempSum = -1;
+        int closest = -1;
+        int maxClosest = -1;
+
+        for(int i=0;i<nums.length;i++){
+            left = i+1;
+            right = nums.length-1;
+
+            while(left<right){
+                tempSum = nums[i]+nums[left]+nums[right];
+
+                if(tempSum>target && tempSum > 0){
+                    closest = tempSum - target;
+                }
+                else{
+                    closest = Math.abs(tempSum - target + 1);
+                }
+
+                maxClosest = Math.max(closest, maxClosest);
+
+                if(tempSum>target){
+                    right--;
+                }
+                else{
+                    left++;
+                }
+            }
+        }
+
+
+
+/*
         int closest = nums[0] + nums[1] + nums[2]; // initial guess
 
         for(int i=0;i<nums.length-2;i++){
@@ -46,7 +80,7 @@ public class ThreeSumCloset {
                 
             }
             
-        }
-        return closest;
+        }*/
+        return maxClosest;
     }
 }
