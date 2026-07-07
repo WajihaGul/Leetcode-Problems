@@ -3,13 +3,46 @@ public class BestTimeToBuyAndSellStock {
         int[] prices = {7, 1, 5, 3, 6, 4};
         System.out.println(maxProfit(prices)); // 5
 
-        int[] prices2 = {7, 6, 4, 3, 1};
+        int[] prices4 = {1,2, 4};
+        System.out.println(maxProfit(prices4)); // 5
+
+   /*     int[] prices2 = {7, 6, 4, 3, 1};
         System.out.println(maxProfit(prices2)); // 0
 
         int[] prices3 = {2, 4, 1};
         System.out.println(maxProfit(prices3)); // 2
-    }
+    */}
     public static int maxProfit(int[] prices) {
+
+        int sum = -1;
+        int maxSum = -1;
+        int left = 0;
+        int right = left + 1;
+
+        while(right<prices.length){
+            if(prices[right]>=prices[left]) {
+                sum = prices[right] - prices[left];
+                maxSum = Math.max(sum, maxSum);
+            }
+            else{
+                left = right;
+            }
+            right++;
+        }
+        //int[] prices = {7, 1, 5, 3, 6, 4};
+        /*for(int i = 0;i<prices.length-1;i++) {
+            for (int j = i + 1; j < prices.length; j++) {
+                if (prices[j] >= prices[i]) {
+                    sum = prices[j] - prices[i];
+                    maxSum = Math.max(sum, maxSum);
+                }
+            }
+        }*/
+        if(maxSum>0){
+            return maxSum;
+        }
+        return 0;
+    }
     /*   int tempSum = -1;
 	    int maxSum = 0;
 
@@ -24,7 +57,7 @@ public class BestTimeToBuyAndSellStock {
 	        }
 	    }
 	    return maxSum;
-    }*/
+    }
         int tempSum = 0;
         int maxSum = 0;
         int minPrice = prices[0]; // track min as you go
@@ -41,5 +74,5 @@ public class BestTimeToBuyAndSellStock {
         }
 
         return maxSum;
-    }
+    }*/
 }
